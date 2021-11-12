@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="UTF-8">
+        <title>Mission To Mars</title>
+    
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="jumbotron text-center">
+            <h1>Mission to Mars</h1>
+            <a href="/scrape" class="btn btn-primary" role="button">Scrape Mars Data</a>
+        </div>
+        <div class="container">
+            <div class:"row">
+                <h3>{{mars.News_Header}}</h3>
+                <p>{{mars.News_Article}}</p>
+            </div>
+            <div class="row">
+                    <div class="col-sm-8">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <h3>Featured Mars Image</h3>
+                                <img class="col-xs-12"src={{mars.JPL_Image}} alt="JPL_Image">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div>
+                            <h3>Mars Facts</h3>
+                            {{mars.Facts | safe}}
+                        </div>
+                        </div>
+                    </div>
+            </div>
+            <div class:"row">
+                <h3 align="center">Mars Hemispheres</h3>
+                    {% for hemisphere in mars.Hemispheres %}
+                    <figure class="col-xs-6">
+                        <img  class ="figure-image col-xs-12" src={{hemisphere.img_url}} alt="">
+                        <figcaption><h3 align="center">{{hemisphere.title}}</h3> </figcaption>  
+                    </figure>
+                    {% endfor %}
+                    {% block body %}{% endblock %}
+            </div>
+        </div>  
+    </body>
+</html>
